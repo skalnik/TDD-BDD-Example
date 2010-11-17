@@ -1,0 +1,4 @@
+<% @posts.each do |post| %>
+  <h2><%= link_to h(post.title), post %></h2>
+  <p><%=h post.body %></h2>
+<% end %>
