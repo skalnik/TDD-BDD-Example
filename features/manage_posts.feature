@@ -11,6 +11,13 @@ Feature: Manage Posts
     And I should see "Y hello thar"
 
   @wip
+  Scenario: View a Post
+    Given a post titled "Testing timez" with body "Awww yeah!"
+    When I go to the list of posts
+    And I follow "Testing timez"
+    Then I should see "Testing timez"
+    And I should see "Awww yeah!"
+
   Scenario: Create Post
     When I create a new post titled "Hello, World" with body "How are you?"
     And I go to the list of posts
