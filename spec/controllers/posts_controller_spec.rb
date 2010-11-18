@@ -79,10 +79,28 @@ describe PostsController do
     end
   end
 
-  describe 'POST update' do
-    it 'should retrieve the post'
-    it 'should update the post'
-    it 'should redirect to the post index'
+  describe 'PUT update' do
+    let(:mock_post) { mock_model(Post, :title => 'Whoa', :body => 'Dude') }
+
+    before do
+      Post.stub(:find).with(mock_post.id).and_return(mock_post)
+      mock_post.stub(:update_attributes).and_return(true)
+    end
+
+    it 'should retrieve the post' do
+      Post.should_receive(:find).with(mock_post.id).and_return(mock_post)
+      put 'update', :id => mock_post.id, :post => {}
+    end
+
+    it 'should update the post' do
+      mock_post.should_receive(:update_attributes).with('title' => 'Updated!', 'body' => 'Brand new!').and_return(true)
+      put 'update', :id => mock_post.id, :post => {:title => 'Updated!', :body => 'Brand new!'}
+    end
+
+    it 'should redirect to the post index' do
+      put 'update', :id => mock_post.id, :post => {}
+      response.should redirect_to(posts_path)
+    end
   end
 end
 
