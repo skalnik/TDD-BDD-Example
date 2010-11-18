@@ -12,4 +12,8 @@ class PostsController < ApplicationController
     post.save
     redirect_to :action => 'index'
   end
+
+  def show
+    @post = Post.find(params[:id])
+  end
 end
