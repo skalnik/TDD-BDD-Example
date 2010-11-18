@@ -14,3 +14,7 @@ When /^I create a new post titled "([^"]*)" with body "([^"]*)"$/ do |title, bod
   fill_in 'Body', :with => body
   click_button 'Save'
 end
+
+When /^I delete the post$/ do
+  click_link 'Destroy', :method => :delete, :javascript => true
+end

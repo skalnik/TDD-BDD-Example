@@ -23,7 +23,6 @@ Feature: Manage Posts
     Then I should see "Hello, World"
     And I should see "How are you?"
 
-  @wip
   Scenario: Edit a Post
     Given a post titled "Can editz?" with body "Pleeaseeeeee?"
     When I go to the list of posts
@@ -35,3 +34,12 @@ Feature: Manage Posts
     And I go to the list of posts
     Then I should see "Of course!"
     And I should see ":)"
+
+  @wip
+  Scenario: Delete a Post
+    Given a post titled "Still here" with body "Or am I?"
+    When I go to the list of posts
+    And I follow "Still here"
+    And I delete the post
+    Then I should not see "Still here"
+    And I should not see "Or am I?"
