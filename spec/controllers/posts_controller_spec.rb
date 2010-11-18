@@ -13,6 +13,21 @@ describe PostsController do
     end
   end
 
+  describe 'GET show' do
+    let(:mock_post) { mock_model(Post) }
+
+    it 'should be successful' do
+      Post.stub(:find).with(mock_post.id).and_return(mock_post)
+      get 'show', :id => mock_post.id
+      response.should be_success
+    end
+
+    it 'should retrieve the post' do
+      Post.should_receive(:find).with(mock_post.id)
+      get 'show', :id => mock_post.id
+    end
+  end
+
   describe 'GET new' do
     it 'should be successful' do
       get 'new'
