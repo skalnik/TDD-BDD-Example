@@ -102,6 +102,30 @@ describe PostsController do
       response.should redirect_to(posts_path)
     end
   end
+
+  describe 'DELETE destroy' do
+    let(:mock_post) { mock_model(Post) }
+
+    before do
+      Post.stub(:find).with(mock_post.id).and_return(mock_post)
+      mock_post.stub(:destroy).and_return(true)
+    end
+
+    it 'should retrieve the post' do
+      Post.should_receive(:find).with(mock_post.id).and_return(mock_post)
+      delete 'destroy', :id => mock_post.id
+    end
+
+    it 'should destroy the post' do
+      mock_post.should_receive(:destroy).and_return(true)
+      delete 'destroy', :id => mock_post.id
+    end
+
+    it 'should redirect to the post index' do
+      delete 'destroy', :id => mock_post.id
+      response.should redirect_to(posts_path)
+    end
+  end
 end
 
 
