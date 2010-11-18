@@ -26,4 +26,10 @@ class PostsController < ApplicationController
     @post.update_attributes(params[:post])
     redirect_to :action => 'index'
   end
+
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to :action => 'index'
+  end
 end
