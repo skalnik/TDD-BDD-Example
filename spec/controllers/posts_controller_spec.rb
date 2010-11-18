@@ -26,8 +26,26 @@ describe PostsController do
   end
 
   describe 'POST create' do
-    it 'should create a new message'
-    it 'should save the message'
-    it 'should redirect to the posts index'
+    let(:mock_post) { mock_model(Post).as_null_object }
+
+    before do
+      Post.stub(:new).and_return(mock_post)
+    end
+
+    it 'should create a new message' do
+      Post.should_receive(:new).
+        with('title' => 'Testing rocks', 'body' => 'I love it!')
+      post :create, :post => {'title' => 'Testing rocks', 'body' => 'I love it!'}
+    end
+
+    it 'should save the message' do
+      mock_post.should_receive(:save)
+      post :create
+    end
+
+    it 'should redirect to the posts index' do
+      post :create
+      response.should redirect_to(:action => 'index')
+    end
   end
 end
