@@ -1,2 +1,6 @@
 <h2><%=h @post.title %></h2>
 <p><%=h @post.body %></p>
+
+<p><%= link_to 'Edit', edit_post_path(@post) %></p>
+<p><%= link_to 'List of Posts', posts_path %></p>
+<p><%= link_to 'Destroy', post_path(@post), :method => :delete, :confirm => 'Are you sure?' %></p>
