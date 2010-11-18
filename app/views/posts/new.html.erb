@@ -1,4 +1,8 @@
 <h2>New Post</h2>
 <%= form_for @post do |f| %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
   <%= f.submit 'Save' %>
 <% end %>
