@@ -3,4 +3,6 @@ class PostsController < ApplicationController
     @posts = Post.find(:all)
   end
 
+  def new
+  end
 end
