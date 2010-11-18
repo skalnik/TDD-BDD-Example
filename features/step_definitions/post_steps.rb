@@ -4,6 +4,10 @@ Given /^posts titled (.+)$/ do |titles|
   end
 end
 
+Given /^a post titled "([^"]*)" with body "([^"]*)"$/ do |title, body|
+  Post.create!(:title => title, :body => body)
+end
+
 When /^I create a new post titled "([^"]*)" with body "([^"]*)"$/ do |title, body|
   visit new_post_path
   fill_in 'Title', :with => title
