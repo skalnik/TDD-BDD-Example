@@ -10,7 +10,6 @@ Feature: Manage Posts
     And I should see "Ohai"
     And I should see "Y hello thar"
 
-  @wip
   Scenario: View a Post
     Given a post titled "Testing timez" with body "Awww yeah!"
     When I go to the list of posts
@@ -23,3 +22,16 @@ Feature: Manage Posts
     And I go to the list of posts
     Then I should see "Hello, World"
     And I should see "How are you?"
+
+  @wip
+  Scenario: Edit a Post
+    Given a post titled "Can editz?" with body "Pleeaseeeeee?"
+    When I go to the list of posts
+    And I follow "Can editz?"
+    And I follow "Edit"
+    And I fill in "Title" with "Of course!"
+    And I fill in "Body" with ":)"
+    And I press "Save"
+    And I go to the list of posts
+    Then I should see "Of course!"
+    And I should see ":)"
